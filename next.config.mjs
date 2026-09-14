@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [400, 640, 828, 1080, 1280, 1600, 1920, 2200],
+    // All portfolio images are static files already committed to /public —
+    // serve them as-is instead of routing through Vercel's Image
+    // Optimization service at runtime. That extra step was the likely
+    // cause of images failing in production while working locally.
+    unoptimized: true,
   },
 };
 export default nextConfig;
