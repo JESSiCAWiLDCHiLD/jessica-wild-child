@@ -10,7 +10,7 @@ export function Credentials() {
           <ul className="space-y-5">
             {credentials.clients.map((c) => (
               <li key={c.name} className="flex flex-wrap items-baseline gap-x-3">
-                <span className="font-display text-2xl md:text-3xl">{c.name}</span>
+                <span className="font-display text-xl md:text-2xl">{c.name}</span>
                 <span className="text-sm opacity-55">
                   {c.place} · {c.year} · {c.note}
                 </span>
@@ -22,7 +22,7 @@ export function Credentials() {
         <dl className="col-span-4 grid grid-cols-2 gap-x-6 gap-y-8 md:col-span-4 md:col-start-7">
           {credentials.facts.map((f) => (
             <div key={f.label}>
-              <dt className="font-display text-3xl leading-none md:text-4xl">{f.value}</dt>
+              <dt className="font-display text-2xl leading-none md:text-3xl">{f.value}</dt>
               <dd className="mt-2 text-sm leading-snug opacity-55">{f.label}</dd>
             </div>
           ))}

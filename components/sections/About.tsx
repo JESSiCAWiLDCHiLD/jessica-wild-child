@@ -40,7 +40,7 @@ export function About() {
         </div>
       </div>
 
-      <div className="mt-20 grid grid-cols-4 gap-4 md:grid-cols-12 md:gap-6">
+      <div className="mt-14 grid grid-cols-4 gap-4 md:grid-cols-12 md:gap-6">
         <Reveal className="col-span-2 md:col-span-4">
           <Figure src="/images/studio/degree-show-2019.jpg" alt="Degree show, oil on canvas, 2.1m" ratio="1 / 1" sizes="(max-width: 768px) 45vw, 30vw" caption="Degree show, 2019 — oil on canvas, 2.1m" />
         </Reveal>

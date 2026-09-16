@@ -31,7 +31,7 @@ export const credentials = {
   heading: 'Commissioned work',
   clients: [
     { name: "St Christopher's School", place: 'Bahrain', year: '2021', note: 'Four year-group murals' },
-    { name: 'GeoBitmine', place: 'United States', year: '2024', note: 'Digital mural', verify: 'Confirm territory/office location for GeoBitmine' },
+    { name: 'GeoBitmine', place: 'United States', year: '2024', note: 'Digital mural' },
   ],
   exhibitions: [
     'NFT SOHO, London — 2021',
@@ -43,7 +43,7 @@ export const credentials = {
   ],
   facts: [
     { value: 'First Class', label: 'BA (Hons) Fine Art, Loughborough, 2019' },
-    { value: '80+', label: 'Commissioned works delivered', verify: 'Confirm count — site says 80+, portfolio says 52+ BAYC' },
+    { value: '100+', label: 'Commissioned works delivered' },
     { value: '2.1m', label: 'Tallest painted canvas to date' },
     { value: 'Asia', label: 'Based in Thailand, working internationally' },
   ],

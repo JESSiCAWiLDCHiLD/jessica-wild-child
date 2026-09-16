@@ -20,7 +20,7 @@ export const concepts = {
         'A family of original characters standing for curiosity, courage, creativity, kindness and imagination — one per house, each with a personality children can actually describe.',
       applications: ['Corridor mural', '3D sculpture in the courtyard', 'Campus wayfinding', 'Sticker and reward system', 'Assembly and events', 'Short animations', 'House identity', 'Letters home and student comms'],
       asset: {
-        src: '/images/murals/st-christophers-key-values.jpg',
+        src: '/images/murals/st-christophers-year-4.jpg',
         alt: 'Reference imagery for a school character family concept',
         placeholder: 'Concept visual — five-character family sheet, replace this stand-in',
       },

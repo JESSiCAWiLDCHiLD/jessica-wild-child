@@ -13,7 +13,7 @@ export function ConceptApplications() {
     <section id={concepts.id} className="room">
       <SectionHeader title={concepts.heading} standfirst={concepts.standfirst} align="wide" />
 
-      <div className="mt-20 space-y-24 md:space-y-32">
+      <div className="mt-14 space-y-16 md:space-y-24">
         {concepts.items.map((item, i) => (
           <article key={item.index} className="grid-12 items-start gap-y-8">
             <div

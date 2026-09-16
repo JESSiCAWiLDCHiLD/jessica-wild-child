@@ -52,14 +52,28 @@ export function Hero() {
           className="absolute right-[-8%] top-[6%] w-[58vw] max-w-[620px] opacity-95 md:right-[2%] md:top-[8%] md:w-[38vw]"
           style={drift(26)}
         >
-          <Image
-            src={wildChildWorld.cutouts[0].src}
-            alt=""
-            width={720}
-            height={720}
-            priority
-            className="h-auto w-full"
-          />
+          {wildChildWorld.cutouts[0].video ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={wildChildWorld.cutouts[0].src ?? undefined}
+              aria-label={wildChildWorld.cutouts[0].alt}
+              className="h-auto w-full"
+            >
+              <source src={wildChildWorld.cutouts[0].video} type="video/quicktime" />
+            </video>
+          ) : (
+            <Image
+              src={wildChildWorld.cutouts[0].src}
+              alt=""
+              width={720}
+              height={720}
+              priority
+              className="h-auto w-full"
+            />
+          )}
         </div>
         <div
           className="absolute bottom-[16%] left-[-16%] w-[42vw] max-w-[420px] opacity-80 md:bottom-[10%] md:left-[26%] md:w-[22vw]"

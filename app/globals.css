@@ -47,10 +47,13 @@
 }
 
 @layer components {
-  /* A "room": one full section of the gallery walk. */
+  /* A "room": one full section of the gallery walk. Trimmed down from
+     the original clamp(5rem, 13vh, 10rem) — that much dead air between
+     every section meant very little content was ever visible on
+     screen at once. */
   .room {
     @apply relative;
-    padding-block: clamp(5rem, 13vh, 10rem);
+    padding-block: clamp(3.25rem, 8vh, 6rem);
     padding-inline: var(--gutter);
   }
 

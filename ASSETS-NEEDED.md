@@ -1,59 +1,62 @@
 # Assets to supply
 
 Everything below currently renders as a labelled "Asset needed" box on
-the live page, or as a stand-in that should be swapped. Ordered by how
-much each one is costing you.
+the live page, or as a stand-in that should be swapped. Resolved items
+are kept here (struck through) so it's clear what's already been
+supplied, rather than silently disappearing.
+
+## Resolved
+
+- ~~St Christopher's, installed and in situ.~~ Year 3 and 4 have real
+  on-site photos paired directly with their murals; Year 5 and 6 still
+  need one each (see below).
+- ~~Tiger 3D character.~~ Now "Temple Tiger" — hero video, detail
+  shots, the sketch-to-render process, and the Thai temple reference
+  material are all in.
+- ~~High-resolution St Christopher's process imagery~~ (site
+  assessment, research board) — supplied and shown as a small one-row
+  strip alongside a one-line process summary.
+- ~~Commissioned works count.~~ Confirmed at 100+ (including BAYC),
+  updated in `content/site.ts` → `credentials.facts`.
+- ~~GeoBitmine territory.~~ Confirmed as United States.
 
 ## Critical — these are what close a commission
 
-1. **St Christopher's, installed and in situ.**
-   Wide, high-resolution photographs of the finished murals on the
-   walls. The portfolio only contains small collaged thumbnails. A
-   school director needs to see the scale on a real corridor.
-   → `public/images/process/05-installed-*.jpg`
+1. **Year 5 and Year 6 murals, installed and in situ.** Year 3 and 4
+   already have this; these two still show an "Asset needed" box next
+   to their mural.
+   → `public/images/process/`
 
-2. **A character as a physical object.**
-   Anything that has left the screen: a print, a sculpt, a resin
-   figure, a fabricated piece. Right now the final step of the
-   "drawing → dimension → physical form" chain has no proof, which is
-   the single weakest point in the whole argument.
-   → `public/images/dimension/` (currently a placeholder box)
-
-3. **Tiger 3D character.**
-   Hero render plus a turntable clip (MP4 or WebM, ~5s loop). The only
-   3D character in the portfolio is a 480×480 export — too small to
-   show large, which is exactly how the brief asks to show it.
+2. **A character as a physical object.** The painted tote bag is in
+   and being used — but that's a product photo, not a sculpted/printed
+   character. A 3D-printed figure is in progress; swap it in here once
+   it's ready.
    → `public/images/dimension/`
 
-4. **Portrait of you.**
-   Studio, or standing in front of an installed work. Landscape or 4:5.
+3. **Portrait of you.** Studio, or standing in front of an installed
+   work. Landscape or 4:5.
    → `public/images/studio/`
 
 ## Important
 
-5. **GeoBitmine installed photograph** plus the final printed
-   dimensions and location.
-6. **High-resolution process imagery** for St Christopher's — the
-   brief document, site-visit photos and research boards exist but are
-   embedded small inside a collage. Originals would let them run large.
-7. **Higher-resolution GeoBitmine mural** — the portfolio copy is
+4. **GeoBitmine installed photograph** plus the final printed
+   dimensions.
+5. **Higher-resolution GeoBitmine mural** — the portfolio copy is
    1280×792, which is soft at full-bleed width.
-8. **Logo / wordmark as SVG**, if you have one. Currently set in type.
-9. **Concept visuals** for the three speculative sections. These
-   currently borrow existing artwork as stand-ins and are labelled as
-   concepts, which is honest but not as persuasive as purpose-made
-   boards would be.
+6. **Logo / wordmark as SVG.** The Wild Child World title card
+   (a raster JPEG) is now used as a badge for that section, but the
+   site's own name in the nav is still set in type — an SVG wordmark
+   would let it run larger without softening.
+7. **Concept visuals** for two of the three speculative sections
+   ("A resident nobody has to explain" and "A world the product lives
+   inside") — these still borrow existing artwork as stand-ins.
 
 ## Nice to have
 
-10. AR demo clip at higher resolution than the phone photo.
-11. A short showreel (15–30s) for the hero, if you ever want motion there.
-12. Open Graph image (1200×630) for link previews.
+8. AR demo clip at higher resolution than the phone photo.
+9. A short showreel (15–30s) for the hero, if you ever want motion there.
+10. Open Graph image (1200×630) for link previews.
 
 ## Facts to confirm
 
-- **Commissioned works count.** Your Framer site says 80+; the
-  portfolio says 52+ BAYC. The site currently says 80+ — confirm or
-  change in `content/site.ts` → `credentials.facts`.
-- **GeoBitmine territory.** Listed as United States; verify.
 - **Mural dimensions** for both case studies, if you want them stated.

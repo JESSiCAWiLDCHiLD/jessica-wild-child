@@ -27,12 +27,15 @@ const config: Config = {
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
+      // Trimmed down from the original scale so more content fits on
+      // screen at once — same ratios between sizes, roughly 20% smaller
+      // at the top end where it mattered most.
       fontSize: {
-        mega: ['clamp(3.2rem, 13vw, 12rem)', { lineHeight: '0.84', letterSpacing: '-0.035em' }],
-        huge: ['clamp(2.4rem, 8vw, 6.5rem)', { lineHeight: '0.88', letterSpacing: '-0.03em' }],
-        big: ['clamp(1.9rem, 4.6vw, 3.6rem)', { lineHeight: '0.98', letterSpacing: '-0.02em' }],
-        lead: ['clamp(1.05rem, 1.7vw, 1.45rem)', { lineHeight: '1.42', letterSpacing: '-0.01em' }],
-        meta: ['0.72rem', { lineHeight: '1.3', letterSpacing: '0.14em' }],
+        mega: ['clamp(2.6rem, 10.5vw, 8.5rem)', { lineHeight: '0.84', letterSpacing: '-0.035em' }],
+        huge: ['clamp(2rem, 6.2vw, 4.8rem)', { lineHeight: '0.88', letterSpacing: '-0.03em' }],
+        big: ['clamp(1.5rem, 3.6vw, 2.6rem)', { lineHeight: '0.98', letterSpacing: '-0.02em' }],
+        lead: ['clamp(0.95rem, 1.4vw, 1.15rem)', { lineHeight: '1.42', letterSpacing: '-0.01em' }],
+        meta: ['0.68rem', { lineHeight: '1.3', letterSpacing: '0.14em' }],
       },
       maxWidth: { measure: '34ch', reading: '52ch' },
       transitionTimingFunction: { world: 'cubic-bezier(0.16, 1, 0.3, 1)' },

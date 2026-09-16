@@ -22,6 +22,20 @@ type Placed = {
   y: number;
 };
 
+/** The centre character — plays as video when one's set, otherwise the still. */
+function CentreMedia({ className }: { className: string }) {
+  if (expansion.centre.video) {
+    return (
+      <video autoPlay muted loop playsInline poster={expansion.centre.src ?? undefined} aria-label={expansion.centre.alt} className={className}>
+        <source src={expansion.centre.video} type="video/quicktime" />
+      </video>
+    );
+  }
+  return (
+    <Image src={expansion.centre.src} alt={expansion.centre.alt} width={720} height={720} sizes="30vw" className={className} />
+  );
+}
+
 /**
  * The page's one genuinely interactive moment: a single character at
  * the centre, with every format it could become radiating out. Hover
@@ -34,11 +48,13 @@ export function ExpansionMap() {
 
   const placed = useMemo<Placed[]>(() => {
     const out: Placed[] = [];
-    // Three arcs across the lower half of the circle, one per branch.
+    // Three arcs across the lower half of the circle, one per branch —
+    // widened from the original 58-60° spans so labels have more room
+    // between them and read as a calmer diagram, not a dense web.
     const arcs = [
-      { start: 196, end: 254 }, // social, upper left
-      { start: 258, end: 318 }, // space, bottom
-      { start: 322, end: 380 }, // digital, upper right
+      { start: 188, end: 258 }, // social, upper left
+      { start: 262, end: 322 }, // space, bottom
+      { start: 326, end: 388 }, // digital, upper right
     ];
     expansion.branches.forEach((branch, bi) => {
       const arc = arcs[bi];
@@ -47,7 +63,7 @@ export function ExpansionMap() {
         const t = n === 1 ? 0.5 : ni / (n - 1);
         const deg = arc.start + (arc.end - arc.start) * t;
         const rad = (deg * Math.PI) / 180;
-        const radius = 37 + (ni % 2) * 6;
+        const radius = 40 + (ni % 2) * 7;
         out.push({
           key: `${branch.key}-${node.label}`,
           branch: branch.title,
@@ -95,8 +111,8 @@ export function ExpansionMap() {
                   x2={p.x}
                   y2={p.y}
                   stroke={on ? HEX[p.colour] : 'currentColor'}
-                  strokeWidth={on ? 0.35 : 0.15}
-                  className={clsx('text-chalk transition-all duration-500', on ? 'opacity-100' : 'opacity-20')}
+                  strokeWidth={on ? 0.35 : 0.1}
+                  className={clsx('text-chalk transition-all duration-500', on ? 'opacity-100' : 'opacity-10')}
                   vectorEffect="non-scaling-stroke"
                 />
               );
@@ -108,14 +124,7 @@ export function ExpansionMap() {
             className="absolute left-1/2 top-[46%] w-[26%] -translate-x-1/2 -translate-y-1/2"
             style={{ filter: active ? 'saturate(0.55)' : 'none', transition: 'filter 600ms' }}
           >
-            <Image
-              src={expansion.centre.src}
-              alt={expansion.centre.alt}
-              width={720}
-              height={720}
-              sizes="30vw"
-              className="h-auto w-full"
-            />
+            <CentreMedia className="h-auto w-full" />
             <span className="tag mt-2 block text-center opacity-60">One character</span>
           </div>
 
@@ -152,7 +161,7 @@ export function ExpansionMap() {
                   left: `${p.x}%`,
                   top: `${p.y}%`,
                   color: on ? HEX[p.colour] : undefined,
-                  opacity: on ? 1 : active ? 0.35 : 0.7,
+                  opacity: on ? 1 : active ? 0.25 : 0.55,
                 }}
               >
                 {p.label}
@@ -176,14 +185,7 @@ export function ExpansionMap() {
 
       {/* Small screens: the same content as a tap-through list */}
       <div className="mt-12 md:hidden">
-        <Image
-          src={expansion.centre.src}
-          alt={expansion.centre.alt}
-          width={720}
-          height={720}
-          sizes="60vw"
-          className="mx-auto h-auto w-1/2"
-        />
+        <CentreMedia className="mx-auto h-auto w-1/2" />
         <span className="tag mb-8 mt-2 block text-center opacity-60">One character</span>
 
         {expansion.branches.map((b) => (

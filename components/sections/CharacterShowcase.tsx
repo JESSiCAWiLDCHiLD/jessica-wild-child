@@ -21,19 +21,25 @@ export function CharacterShowcase() {
         </ol>
       </Reveal>
 
-      {/* 4–8 hero projects, each given room. Not a thumbnail grid. */}
-      <div className="mt-20 grid grid-cols-4 gap-x-4 gap-y-16 md:grid-cols-12 md:gap-x-6 md:gap-y-28">
+      {/* Hero projects, each given room but not oversized — smaller cards
+          and tighter gaps than before, so more of the section is visible
+          at once. */}
+      <div className="mt-14 grid grid-cols-4 gap-x-4 gap-y-10 md:grid-cols-12 md:gap-x-6 md:gap-y-16">
         {dimension.projects.map((project, i) => {
-          const wide = i % 3 === 0;
+          // Small native exports (the OpenBrush rotation is 480x480, the
+          // Meshy experiments clip is a 480x848 screen recording) never
+          // get the wide slot, and are capped below their card so they
+          // aren't stretched past their real resolution.
+          const wide = project.forceWide || (i % 3 === 0 && !project.smallVideo);
           return (
             <article
               key={project.name}
               className={
                 wide
-                  ? 'col-span-4 md:col-span-8'
+                  ? 'col-span-4 md:col-span-6'
                   : i % 3 === 1
-                    ? 'col-span-4 md:col-span-5 md:col-start-2'
-                    : 'col-span-4 md:col-span-5 md:col-start-8'
+                    ? 'col-span-4 md:col-span-4 md:col-start-2'
+                    : 'col-span-4 md:col-span-4 md:col-start-8'
               }
             >
               <Reveal>
@@ -41,12 +47,66 @@ export function CharacterShowcase() {
                   src={project.asset.src}
                   alt={project.asset.alt}
                   placeholder={project.asset.placeholder}
-                  ratio={project.tall ? '3 / 4' : '4 / 3'}
-                  sizes={wide ? '(max-width: 768px) 100vw, 62vw' : '(max-width: 768px) 100vw, 40vw'}
+                  video={project.video}
+                  ratio="1 / 1"
+                  className={project.smallVideo ? 'max-w-[360px]' : undefined}
+                  sizes={wide ? '(max-width: 768px) 100vw, 46vw' : '(max-width: 768px) 100vw, 32vw'}
                 />
               </Reveal>
-              <h3 className="mt-6 font-display text-2xl md:text-3xl">{project.name}</h3>
-              <p className="mt-3 max-w-measure text-sm leading-relaxed opacity-65">{project.note}</p>
+              {project.detail ? (
+                <div className="mt-5">
+                  <span className="tag mb-2 block opacity-45">Detail</span>
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-4 max-w-[640px]">
+                    {project.detail.map((img) => (
+                      <Reveal key={img.src}>
+                        <Figure src={img.src} alt={img.alt} ratio="1 / 1" sizes="150px" />
+                      </Reveal>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+              {project.gallery ? (
+                <div className="mt-3 grid grid-cols-3 gap-2">
+                  {project.gallery.map((img) => (
+                    <Reveal key={img.src}>
+                      <Figure src={img.src} alt={img.alt} ratio="1 / 1" sizes="(max-width: 768px) 28vw, 120px" />
+                    </Reveal>
+                  ))}
+                </div>
+              ) : null}
+              {project.process ? (
+                <div className="mt-5">
+                  <span className="tag mb-2 block opacity-45">Process</span>
+                  <div className="grid grid-cols-2 gap-2 max-w-[320px]">
+                    {project.process.map((img) => (
+                      <Reveal key={img.src}>
+                        <Figure src={img.src} alt={img.alt} ratio="1 / 1" sizes="150px" caption={img.caption} />
+                      </Reveal>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+              {project.inspiration ? (
+                <div className="mt-5">
+                  <span className="tag mb-2 block opacity-45">{project.inspiration.heading}</span>
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-4 max-w-[640px]">
+                    {project.inspiration.items.map((img, j) => (
+                      <Reveal key={`${img.src}-${j}`}>
+                        <Figure
+                          src={img.src}
+                          alt={img.alt}
+                          video={img.video}
+                          ratio="1 / 1"
+                          sizes="150px"
+                          caption={img.caption}
+                        />
+                      </Reveal>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+              <h3 className="mt-5 font-display text-xl md:text-2xl">{project.name}</h3>
+              <p className="mt-2 max-w-measure text-sm leading-relaxed opacity-65">{project.note}</p>
             </article>
           );
         })}
