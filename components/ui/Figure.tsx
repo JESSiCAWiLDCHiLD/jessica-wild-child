@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 import { clsx } from '@/lib/clsx';
 
 type Props = {
@@ -46,15 +49,44 @@ export function Figure({
   fit = 'cover',
   video,
 }: Props) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  // Belt-and-suspenders: the autoPlay attribute alone is occasionally
+  // ignored (Safari in particular), especially for a video that isn't
+  // fully buffered yet. Nudge it explicitly once it's ready, and again
+  // any time playback stalls or the tab regains visibility.
+  useEffect(() => {
+    if (!video) return;
+    const el = videoRef.current;
+    if (!el) return;
+    const tryPlay = () => {
+      el.play().catch(() => {
+        // Autoplay can be refused before the user has interacted with
+        // the page at all — harmless, playback starts on the next nudge.
+      });
+    };
+    tryPlay();
+    el.addEventListener('canplay', tryPlay);
+    el.addEventListener('stalled', tryPlay);
+    document.addEventListener('visibilitychange', tryPlay);
+    return () => {
+      el.removeEventListener('canplay', tryPlay);
+      el.removeEventListener('stalled', tryPlay);
+      document.removeEventListener('visibilitychange', tryPlay);
+    };
+  }, [video]);
+
   return (
     <figure className={clsx('relative', className)}>
       <div className="relative w-full overflow-hidden" style={{ aspectRatio: ratio }}>
         {video ? (
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop
             playsInline
+            preload="auto"
             poster={src ?? undefined}
             aria-label={alt}
             className={clsx('absolute inset-0 h-full w-full', fit === 'contain' ? 'object-contain' : 'object-cover', imgClassName)}

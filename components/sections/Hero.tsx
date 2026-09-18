@@ -13,9 +13,25 @@ import { wildChildWorld } from '@/content/projects';
  */
 export function Hero() {
   const ref = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const [loaded, setLoaded] = useState(false);
   const [interactive, setInteractive] = useState(false);
+
+  // Belt-and-suspenders for the cut-out video: the autoPlay attribute
+  // alone is occasionally ignored, so nudge playback explicitly too.
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    const tryPlay = () => el.play().catch(() => {});
+    tryPlay();
+    el.addEventListener('canplay', tryPlay);
+    document.addEventListener('visibilitychange', tryPlay);
+    return () => {
+      el.removeEventListener('canplay', tryPlay);
+      document.removeEventListener('visibilitychange', tryPlay);
+    };
+  }, []);
 
   useEffect(() => {
     setLoaded(true);
@@ -46,18 +62,22 @@ export function Hero() {
       ref={ref}
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden px-[var(--gutter)] pb-12 pt-32 lg:pl-[calc(var(--gutter)+var(--rail))]"
     >
-      {/* Character cut-outs, sitting behind the type */}
+      {/* Character cut-outs — both kept in the upper portion of the
+          section, since the text below is bottom-anchored (justify-end)
+          and used to collide with a cut-out sitting down there too. */}
       <div className="pointer-events-none absolute inset-0 -z-0" aria-hidden>
         <div
-          className="absolute right-[-8%] top-[6%] w-[58vw] max-w-[620px] opacity-95 md:right-[2%] md:top-[8%] md:w-[38vw]"
+          className="absolute right-[-8%] top-[4%] w-[52vw] max-w-[560px] opacity-95 md:right-[2%] md:top-[6%] md:w-[34vw]"
           style={drift(26)}
         >
           {wildChildWorld.cutouts[0].video ? (
             <video
+              ref={videoRef}
               autoPlay
               muted
               loop
               playsInline
+              preload="auto"
               poster={wildChildWorld.cutouts[0].src ?? undefined}
               aria-label={wildChildWorld.cutouts[0].alt}
               className="h-auto w-full"
@@ -76,7 +96,7 @@ export function Hero() {
           )}
         </div>
         <div
-          className="absolute bottom-[16%] left-[-16%] w-[42vw] max-w-[420px] opacity-80 md:bottom-[10%] md:left-[26%] md:w-[22vw]"
+          className="absolute left-[-12%] top-[4%] w-[40vw] max-w-[360px] opacity-70 md:left-[3%] md:top-[8%] md:w-[18vw]"
           style={drift(-16)}
         >
           <Image

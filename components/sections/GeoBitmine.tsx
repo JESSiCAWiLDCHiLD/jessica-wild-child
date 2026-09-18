@@ -23,23 +23,14 @@ export function GeoBitmineCaseStudy() {
         <Figure src={p.hero.src} alt={p.hero.alt} ratio="16 / 10" sizes="100vw" />
       </Reveal>
 
-      <div className="mt-16 grid-12 gap-y-10">
-        <div className="col-span-4 space-y-6 md:col-span-5">
-          {p.body.map((para) => (
-            <p key={para} className="max-w-measure text-lead opacity-75">
-              {para}
-            </p>
-          ))}
-        </div>
-        <div className="col-span-4 md:col-span-5 md:col-start-8">
-          <Figure
-            src={p.install.src}
-            alt={p.install.alt}
-            placeholder={p.install.placeholder}
-            ratio="4 / 3"
-            sizes="(max-width: 768px) 100vw, 40vw"
-          />
-        </div>
+      {/* No install shot yet — the mural hasn't been printed, so this
+          runs as text only rather than a placeholder box next to it. */}
+      <div className="mt-16 space-y-6">
+        {p.body.map((para) => (
+          <p key={para} className="max-w-reading text-lead opacity-75">
+            {para}
+          </p>
+        ))}
       </div>
     </section>
   );

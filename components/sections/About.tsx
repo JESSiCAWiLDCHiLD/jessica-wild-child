@@ -9,9 +9,8 @@ export function About() {
         <div className="col-span-4 md:col-span-5">
           <Reveal>
             <Figure
-              src={null}
+              src="/images/studio/photo-of-me.jpg"
               alt="Portrait of Jessica Mannings"
-              placeholder="Portrait of Jessica — studio or in front of an installed work, landscape or 4:5"
               ratio="4 / 5"
               sizes="(max-width: 768px) 100vw, 40vw"
             />

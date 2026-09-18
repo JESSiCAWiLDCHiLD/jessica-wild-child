@@ -27,10 +27,21 @@ export function WildChildWorld() {
           // Tailwind can't generate a grid-cols-N class from a dynamic
           // number, so the column count is set inline here instead —
           // each row stays a single row, exactly as many columns as items.
-          <div key={i} className="grid gap-3" style={{ gridTemplateColumns: `repeat(${row.length}, minmax(0, 1fr))` }}>
-            {row.map((item, j) => (
+          <div
+            key={i}
+            className="grid gap-3"
+            style={{ gridTemplateColumns: `repeat(${row.items.length}, minmax(0, 1fr))` }}
+          >
+            {row.items.map((item, j) => (
               <Reveal key={`${i}-${j}`}>
-                <Figure src={item.src} alt={item.alt} video={item.video} ratio="1 / 1" sizes="180px" />
+                <Figure
+                  src={item.src}
+                  alt={item.alt}
+                  video={item.video}
+                  ratio={row.ratio ?? '1 / 1'}
+                  fit={row.fit}
+                  sizes="180px"
+                />
               </Reveal>
             ))}
           </div>

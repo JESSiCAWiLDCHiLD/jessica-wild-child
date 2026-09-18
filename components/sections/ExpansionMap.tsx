@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { expansion } from '@/content/expansion';
 import { Reveal } from '@/components/ui/Reveal';
 import { clsx } from '@/lib/clsx';
@@ -24,9 +24,24 @@ type Placed = {
 
 /** The centre character — plays as video when one's set, otherwise the still. */
 function CentreMedia({ className }: { className: string }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    const tryPlay = () => el.play().catch(() => {});
+    tryPlay();
+    el.addEventListener('canplay', tryPlay);
+    document.addEventListener('visibilitychange', tryPlay);
+    return () => {
+      el.removeEventListener('canplay', tryPlay);
+      document.removeEventListener('visibilitychange', tryPlay);
+    };
+  }, []);
+
   if (expansion.centre.video) {
     return (
-      <video autoPlay muted loop playsInline poster={expansion.centre.src ?? undefined} aria-label={expansion.centre.alt} className={className}>
+      <video ref={videoRef} autoPlay muted loop playsInline preload="auto" poster={expansion.centre.src ?? undefined} aria-label={expansion.centre.alt} className={className}>
         <source src={expansion.centre.video} type="video/quicktime" />
       </video>
     );

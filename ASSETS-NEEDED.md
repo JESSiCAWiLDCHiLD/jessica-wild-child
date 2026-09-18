@@ -19,6 +19,14 @@ supplied, rather than silently disappearing.
 - ~~Commissioned works count.~~ Confirmed at 100+ (including BAYC),
   updated in `content/site.ts` → `credentials.facts`.
 - ~~GeoBitmine territory.~~ Confirmed as United States.
+- ~~Portrait of you.~~ In use in the About section.
+  → `public/images/studio/photo-of-me.jpg`
+- ~~Concept visuals~~ — the "Imagine what we could build" section is
+  now text-only by design (the weakest of the three propositions was
+  also cut), so this no longer applies.
+- ~~GeoBitmine installed photograph.~~ Not applicable yet — the mural
+  hasn't been printed, so that placeholder was removed rather than
+  left waiting. Re-add once there's something to show.
 
 ## Critical — these are what close a commission
 
@@ -33,29 +41,20 @@ supplied, rather than silently disappearing.
    it's ready.
    → `public/images/dimension/`
 
-3. **Portrait of you.** Studio, or standing in front of an installed
-   work. Landscape or 4:5.
-   → `public/images/studio/`
-
 ## Important
 
-4. **GeoBitmine installed photograph** plus the final printed
-   dimensions.
-5. **Higher-resolution GeoBitmine mural** — the portfolio copy is
+3. **Higher-resolution GeoBitmine mural** — the portfolio copy is
    1280×792, which is soft at full-bleed width.
-6. **Logo / wordmark as SVG.** The Wild Child World title card
+4. **Logo / wordmark as SVG.** The Wild Child World title card
    (a raster JPEG) is now used as a badge for that section, but the
    site's own name in the nav is still set in type — an SVG wordmark
    would let it run larger without softening.
-7. **Concept visuals** for two of the three speculative sections
-   ("A resident nobody has to explain" and "A world the product lives
-   inside") — these still borrow existing artwork as stand-ins.
 
 ## Nice to have
 
-8. AR demo clip at higher resolution than the phone photo.
-9. A short showreel (15–30s) for the hero, if you ever want motion there.
-10. Open Graph image (1200×630) for link previews.
+5. AR demo clip at higher resolution than the phone photo.
+6. A short showreel (15–30s) for the hero, if you ever want motion there.
+7. Open Graph image (1200×630) for link previews.
 
 ## Facts to confirm
 

@@ -100,11 +100,6 @@ export const geobitmine = {
     'The same method applies to a hotel group, a developer or a consumer brand. The subject matter changes; the translation does not.',
   ],
   hero: { src: '/images/murals/geobitmine-digital-mural.jpg', alt: 'GeoBitmine digital mural' } as Asset,
-  install: {
-    src: null,
-    alt: 'GeoBitmine mural installed on site',
-    placeholder: 'Installed photograph — printed mural in situ at GeoBitmine, plus final dimensions',
-  } as Asset,
 };
 
 export const dimension = {
@@ -115,22 +110,22 @@ export const dimension = {
   chain: ['Drawing', 'Design', '3D model', 'Animation', 'World', 'Physical object'],
   projects: [
     {
-      name: 'OpenBrush character study',
-      note: '2D animation transformed into a 3D model using Meta Quest Pro and OpenBrush. Rigged, dropped into 3D environments, and playable as a downloadable character in interactive exhibitions.',
+      name: 'From 2D to 3D',
+      note: 'I recreated the character in OpenBrush using Meta Quest, translating the original 2D personality into a three-dimensional form. The resulting character can be developed further through rigging, animation, virtual environments and physical production such as 3D printing.',
       asset: { src: '/images/dimension/3d-character-openbrush.jpg', alt: '3D character modelled in OpenBrush, rotating' } as Asset,
       video: '/images/characters/wild-child-character-08-3D-rotating-animation.MP4',
       smallVideo: true, // native export is 480x480 — never display large
       tall: true,
     },
     {
-      name: 'Island environment',
-      note: 'An original character, hand-drawn frame by frame, given a world to actually exist in — the same 2D-to-OpenBrush workflow, built out into a full 3D environment rather than a single figure.',
+      name: '"Strawbugs" — childhood character study',
+      note: 'A frame-by-frame animated character built around strawberries-and-cream sweetness, skateboarding energy and a sense of childhood nostalgia. The aim was to capture curiosity, playfulness and a slightly dreamlike charm through colour, movement and expression.',
       asset: { src: '/images/dimension/3d-environment-island.jpg', alt: '3D island environment, rotating' } as Asset,
       video: '/images/characters/wild-child-strawbugs-island.mov',
     },
     {
-      name: 'Scene study',
-      note: 'Props and set dressing for that same world, drawn frame by frame and modelled into OpenBrush alongside the character rather than built as a separate exercise.',
+      name: 'From 2D to 3D',
+      note: 'I recreated the character in OpenBrush using Meta Quest, translating the original 2D personality into a three-dimensional form. The resulting character can be developed further through rigging, animation, virtual environments and physical production such as 3D printing.',
       asset: { src: '/images/dimension/3d-environment-scene.jpg', alt: '3D scene study, rotating' } as Asset,
       video: '/images/characters/wild-child-character-3d-video.mov',
     },
@@ -139,6 +134,10 @@ export const dimension = {
       note: 'Inspired by the ornament of Thai temple architecture, then sketched and rebuilt as a fully surfaced 3D model via the Meshy workflow.',
       asset: { src: null, alt: 'Tiger 3D character, rotating' } as Asset,
       video: '/images/characters/tiger-video-3d.mov',
+      // The supporting development shots (Detail/Process/Reference)
+      // run in a column next to the video; the heading and note sit
+      // below everything as one full-width banner.
+      layout: 'split-bottom' as const,
       detail: [
         { src: '/images/characters/tiger-image-1.png', alt: 'Close-up detail of the tiger’s surfacing and ornament' },
         { src: '/images/characters/tiger-image-3.png', alt: 'Close-up detail of the tiger’s roaring expression and mane' },
@@ -194,11 +193,17 @@ export const dimension = {
     },
     {
       name: 'Meshy character studies',
-      note: 'Existing Wild Child artworks fed into Meshy — a text-to-3D model — to test how far a painted character can be pushed into a fully modelled one without redrawing it from scratch.',
-      asset: { src: '/images/characters/wild-child-3d-experiment-1.JPG', alt: 'Meshy-generated 3D character, rotating' } as Asset,
+      note: [
+        'Existing Wild Child artworks fed into Meshy — a text-to-3D model — to test how far a digitally-drawn character can be pushed into a fully modelled one without redrawing it from scratch.',
+        'These characters are not isolated AI outputs. They are developed from an existing original IP, with recurring colour, form, symbolism and personality so each new character feels unique while still belonging to the same world.',
+      ],
+      asset: { src: null, alt: 'Meshy-generated 3D character, rotating' } as Asset,
       video: '/images/characters/wild-child-3d-experiment.MOV',
       smallVideo: true, // 480x848 screen recording — never display large
+      // Video + all four stills on the left, text on the right.
+      layout: 'split-right' as const,
       gallery: [
+        { src: '/images/characters/wild-child-3d-experiment-1.JPG', alt: 'Meshy-generated 3D character study' } as Asset,
         { src: '/images/characters/wild-child-3d-experiment-2JPG.JPG', alt: 'Meshy-generated 3D character study' } as Asset,
         { src: '/images/characters/wild-child-3d-experiment-3.JPG', alt: 'Meshy-generated 3D character study' } as Asset,
         { src: '/images/characters/wild-child-3d-experiment-4.JPG', alt: 'Meshy-generated 3D character study' } as Asset,
@@ -241,27 +246,38 @@ export const wildChildWorld = {
       alt: 'Wild Child World title card — a monster with the wordmark inside its open mouth',
     },
     rows: [
-      [
-        { src: '/images/characters/wild-child-character-03.JPG', alt: 'Wild Child character study' },
-        {
-          src: null,
-          alt: 'Wild Child character, animated',
-          video: '/images/characters/wild-child-character-04-animated.mov',
-        },
-        { src: '/images/characters/wild-child-character-05.JPG', alt: 'Wild Child character study' },
-        { src: '/images/characters/wild-child-character-06.JPG', alt: 'Wild Child character study' },
-        { src: '/images/characters/wild-child-character-08.JPG', alt: 'Wild Child character study' },
-      ],
-      [
-        { src: '/images/characters/Indigo_Warrior.GIF', alt: 'Indigo Warrior, animated' },
-        { src: '/images/characters/feral-baby.jpg', alt: 'Feral Baby character portrait' },
-        { src: '/images/characters/One-ness.jpg', alt: 'One-ness — dreamscape portrait' },
-        { src: null, alt: 'Dream 59, animated painting', video: '/images/characters/dream-59.mp4' },
-      ],
-      [
-        { src: null, alt: 'Flower character, animated', video: '/images/characters/flower-animated.mov' },
-        { src: null, alt: 'Deranged Rainbow character, animated', video: '/images/characters/deranged-rainbow.mov' },
-      ],
+      {
+        items: [
+          { src: '/images/characters/wild-child-character-03.JPG', alt: 'Wild Child character study' },
+          {
+            src: null,
+            alt: 'Wild Child character, animated',
+            video: '/images/characters/wild-child-character-04-animated.mov',
+          },
+          { src: '/images/characters/wild-child-character-05.JPG', alt: 'Wild Child character study' },
+          { src: '/images/characters/wild-child-character-06.JPG', alt: 'Wild Child character study' },
+          { src: '/images/characters/wild-child-character-08.JPG', alt: 'Wild Child character study' },
+        ],
+      },
+      {
+        // These four are genuinely portrait (as tall as 2095x3423) — a
+        // square crop was cutting them off, so this row runs taller and
+        // shows the whole image instead of cropping to fill the box.
+        ratio: '3 / 4',
+        fit: 'contain' as const,
+        items: [
+          { src: '/images/characters/Indigo_Warrior.GIF', alt: 'Indigo Warrior, animated' },
+          { src: '/images/characters/feral-baby.jpg', alt: 'Feral Baby character portrait' },
+          { src: '/images/characters/One-ness.jpg', alt: 'One-ness — dreamscape portrait' },
+          { src: null, alt: 'Dream 59, animated painting', video: '/images/characters/dream-59.mp4' },
+        ],
+      },
+      {
+        items: [
+          { src: null, alt: 'Flower character, animated', video: '/images/characters/flower-animated.mov' },
+          { src: null, alt: 'Deranged Rainbow character, animated', video: '/images/characters/deranged-rainbow.mov' },
+        ],
+      },
     ],
   },
 };
