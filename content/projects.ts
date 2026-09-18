@@ -229,7 +229,7 @@ export const wildChildWorld = {
   ],
   cutouts: [
     {
-      src: '/images/characters/wild-child-character-01.png',
+      src: null, // wild-child-character-01.png no longer exists — video plays without a poster frame
       alt: 'Wild Child character, animated',
       video: '/images/characters/wild-child-character-04-animated.mov',
     },

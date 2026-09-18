@@ -46,6 +46,7 @@ function CentreMedia({ className }: { className: string }) {
       </video>
     );
   }
+  if (!expansion.centre.src) return null;
   return (
     <Image src={expansion.centre.src} alt={expansion.centre.alt} width={720} height={720} sizes="30vw" className={className} />
   );

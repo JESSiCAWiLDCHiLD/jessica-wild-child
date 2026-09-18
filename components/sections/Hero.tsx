@@ -84,7 +84,7 @@ export function Hero() {
             >
               <source src={wildChildWorld.cutouts[0].video} type="video/quicktime" />
             </video>
-          ) : (
+          ) : wildChildWorld.cutouts[0].src ? (
             <Image
               src={wildChildWorld.cutouts[0].src}
               alt=""
@@ -93,20 +93,22 @@ export function Hero() {
               priority
               className="h-auto w-full"
             />
-          )}
+          ) : null}
         </div>
         <div
           className="absolute left-[-12%] top-[4%] w-[40vw] max-w-[360px] opacity-70 md:left-[3%] md:top-[8%] md:w-[18vw]"
           style={drift(-16)}
         >
-          <Image
-            src={wildChildWorld.cutouts[1].src}
-            alt=""
-            width={720}
-            height={720}
-            priority
-            className="h-auto w-full"
-          />
+          {wildChildWorld.cutouts[1].src ? (
+            <Image
+              src={wildChildWorld.cutouts[1].src}
+              alt=""
+              width={720}
+              height={720}
+              priority
+              className="h-auto w-full"
+            />
+          ) : null}
         </div>
       </div>
 

@@ -13,7 +13,7 @@ export const expansion = {
   standfirst:
     'Commissioning a character is not buying one image. It is commissioning a piece of intellectual property that can keep being spent.',
   centre: {
-    src: '/images/characters/wild-child-character-01.png',
+    src: null, // wild-child-character-01.png no longer exists — video plays without a poster frame
     alt: 'A single Wild Child character at the centre of the diagram, animated',
     video: '/images/characters/wild-child-character-04-animated.mov',
   },

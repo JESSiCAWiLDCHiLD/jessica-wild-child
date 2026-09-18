@@ -131,13 +131,14 @@ export function CharacterShowcase() {
             );
           }
 
-          // Meshy studies: video + all four stills on the left, text on
-          // the right, instead of text stacking below the images.
+          // Meshy studies: video, the gallery of stills, and the text
+          // all sit side by side in one row rather than the video and
+          // gallery stacking above the text.
           if (project.layout === 'split-right') {
             return (
               <article key={i} className="col-span-4 md:col-span-12">
-                <div className="grid gap-8 md:grid-cols-12 md:items-start">
-                  <div className="md:col-span-7">
+                <div className="grid gap-6 md:grid-cols-12 md:items-start">
+                  <div className="md:col-span-3">
                     <Reveal>
                       <Figure
                         src={project.asset.src}
@@ -145,10 +146,11 @@ export function CharacterShowcase() {
                         placeholder={project.asset.placeholder}
                         video={project.video}
                         ratio="1 / 1"
-                        className={project.smallVideo ? 'max-w-[360px]' : undefined}
-                        sizes="(max-width: 768px) 100vw, 54vw"
+                        sizes="(max-width: 768px) 100vw, 24vw"
                       />
                     </Reveal>
+                  </div>
+                  <div className="md:col-span-4">
                     <SupportingMedia project={project} />
                   </div>
                   <div className="md:col-span-5">
