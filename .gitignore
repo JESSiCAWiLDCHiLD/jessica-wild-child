@@ -9,3 +9,4 @@ next-env.d.ts
 # actual 3D printing) but far too large to ship in the repo/deploy.
 # The web-ready optimized version lives in public/images/.
 /3d-source-files
+public/images/process/Feral_Baby.GIF
