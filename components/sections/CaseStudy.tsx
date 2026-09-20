@@ -30,12 +30,41 @@ export function StChristophersCaseStudy() {
           murals are the actual proof. The preliminary sketches and
           brainstorm boards are still shown, just kept to one small row. */}
       <p className="mt-6 max-w-reading text-sm opacity-50">{p.methodNote}</p>
-      <div className="mt-4 grid max-w-md grid-cols-2 gap-3">
+      {/* Every item gets the same explicit height directly (md:h-[...])
+          and computes its own width from that via aspect-ratio — the
+          same technique used for Feral Baby/Strawbugs. A max-width
+          alone doesn't work here: these boxes hold Next.js "fill"
+          images, which are absolutely positioned and contribute no
+          intrinsic size, so a bare max-w has nothing to cap and
+          silently does nothing (which is why earlier attempts to just
+          make these "bigger" had no visible effect). */}
+      <div className="mt-4 flex flex-col gap-6 md:flex-row md:flex-wrap md:items-start">
         {p.sketches.map((s) => (
-          <Reveal key={s.src}>
-            <Figure src={s.src} alt={s.alt} ratio="4 / 3" fit="contain" sizes="240px" caption={s.caption} />
-          </Reveal>
+          <div key={s.src} className="w-full md:w-auto md:shrink-0">
+            <Reveal>
+              <div className="relative mx-auto md:mx-0 md:h-[270px]" style={{ aspectRatio: '4 / 3' }}>
+                <Figure src={s.src} alt={s.alt} fit="contain" fillHeight className="h-full" sizes="360px" caption={s.caption} />
+              </div>
+            </Reveal>
+          </div>
         ))}
+        {p.timelapse ? (
+          <div className="w-full md:w-auto md:shrink-0">
+            <Reveal>
+              <div className="relative mx-auto md:mx-0 md:h-[270px]" style={{ aspectRatio: '1456 / 640' }}>
+                <Figure
+                  src={null}
+                  alt={p.timelapse.alt}
+                  video={p.timelapse.video}
+                  fillHeight
+                  className="h-full"
+                  sizes="615px"
+                  caption={p.timelapse.caption}
+                />
+              </div>
+            </Reveal>
+          </div>
+        ) : null}
       </div>
 
       {/* The four murals — the lead work. */}

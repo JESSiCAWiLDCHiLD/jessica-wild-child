@@ -44,10 +44,16 @@ export function About() {
           <Figure src="/images/studio/degree-show-2019.jpg" alt="Degree show, oil on canvas, 2.1m" ratio="1 / 1" sizes="(max-width: 768px) 45vw, 30vw" caption="Degree show, 2019 — oil on canvas, 2.1m" />
         </Reveal>
         <Reveal className="col-span-2 md:col-span-4" delay={80}>
-          <Figure src="/images/studio/live-painting.jpg" alt="Live painting performance" ratio="1 / 1" sizes="(max-width: 768px) 45vw, 30vw" caption="Live painting, London" />
+          <Figure
+            src="/images/studio/solo-exhibition-vietnam-paint-jam.jpg"
+            alt="Solo exhibition in Vietnam and paint jam"
+            ratio="1 / 1"
+            sizes="(max-width: 768px) 45vw, 30vw"
+            caption="Solo exhibition in Vietnam and paint jam"
+          />
         </Reveal>
         <Reveal className="col-span-4 md:col-span-4" delay={160}>
-          <Figure src="/images/studio/exhibition-gm-vietnam.jpg" alt="Solo exhibition, Vietnam" ratio="1 / 1" sizes="(max-width: 768px) 90vw, 30vw" caption="Solo exhibition, Vietnam" />
+          <Figure src="/images/studio/exhibition-gm-vietnam.jpg" alt="Bored Minds exhibition, New York" ratio="1 / 1" sizes="(max-width: 768px) 90vw, 30vw" caption="Bored Minds exhibition, New York" />
         </Reveal>
       </div>
     </section>

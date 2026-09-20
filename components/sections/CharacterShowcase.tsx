@@ -15,7 +15,7 @@ function SupportingMedia({ project }: { project: Project }) {
           <div className="grid max-w-[640px] grid-cols-2 gap-2 md:grid-cols-4">
             {project.detail.map((img) => (
               <Reveal key={img.src}>
-                <Figure src={img.src} alt={img.alt} ratio="1 / 1" sizes="150px" />
+                <Figure src={img.src} alt={img.alt} ratio="1 / 1" sizes="150px" caption={img.caption} />
               </Reveal>
             ))}
           </div>
@@ -102,9 +102,90 @@ export function CharacterShowcase() {
           // resolution.
           const wide = project.forceWide || (i % 3 === 0 && !project.smallVideo);
 
-          // Temple Tiger: video on the left, every supporting shot
-          // stacked in a column on the right; heading and note run as
-          // one full-width banner below everything.
+          // Feral Baby and Strawbugs. Feral Baby renders at its own
+          // natural (portrait) ratio, which sets the row's height;
+          // Strawbugs stretches to that exact same height via flex,
+          // staying square (its own aspect-ratio computes the width
+          // that goes with that height — not a fixed box).
+          //
+          // Both media items get their height directly (md:h-[...]),
+          // and compute their own width from it via `aspect-ratio` —
+          // rather than one stretching to match the OTHER via flex
+          // cross-axis stretch, which was pulling in the full height
+          // of Feral Baby's column (image + heading + paragraph) and
+          // making the square balloon far bigger than intended.
+          if (project.layout === 'paired-originals' && project.left && project.right) {
+            return (
+              <article key={i} className="col-span-4 md:col-span-12">
+                <div className="flex flex-col gap-8 md:flex-row md:flex-wrap md:items-start">
+                  <div className="w-full md:min-w-[240px] md:flex-1">
+                    <h3 className="font-display text-xl md:text-2xl">{project.left.name}</h3>
+                    <Note note={project.left.note} />
+                  </div>
+                  <div className="w-full md:w-auto md:shrink-0">
+                    <Reveal>
+                      <div className="relative mx-auto md:mx-0 md:h-[520px]" style={{ aspectRatio: project.left.ratio }}>
+                        <Figure src={project.left.asset.src} alt={project.left.asset.alt} fillHeight className="h-full" sizes="420px" />
+                      </div>
+                    </Reveal>
+                  </div>
+                  {/* Kept an exact square (not cropped to fit) — same
+                      fixed height as Feral Baby, and `fit="contain"`
+                      shows the whole clip inside it rather than
+                      cropping, since the source isn't pixel-perfect
+                      square (810x826). */}
+                  <div className="w-full md:w-auto md:shrink-0">
+                    <Reveal>
+                      <div className="relative mx-auto md:mx-0 md:h-[520px]" style={{ aspectRatio: '1 / 1' }}>
+                        <Figure
+                          src={project.right.asset.src}
+                          alt={project.right.asset.alt}
+                          video={project.right.video}
+                          fillHeight
+                          fit="contain"
+                          className="h-full"
+                          sizes="520px"
+                        />
+                      </div>
+                    </Reveal>
+                  </div>
+                  <div className="w-full md:min-w-[240px] md:flex-1">
+                    <h3 className="font-display text-xl md:text-2xl">{project.right.name}</h3>
+                    <Note note={project.right.note} />
+                  </div>
+                </div>
+              </article>
+            );
+          }
+
+          // Two Meta Quest results side by side, with the shared
+          // "From 2D to 3D" text sitting to their right — it applies
+          // to the pair as a whole, not stacked underneath both.
+          if (project.layout === 'paired-videos' && project.pairedVideos) {
+            return (
+              <article key={i} className="col-span-4 md:col-span-12">
+                <div className="grid gap-6 md:grid-cols-12 md:items-start">
+                  {project.pairedVideos.map((v, j) => (
+                    <div key={j} className="md:col-span-4">
+                      <Reveal>
+                        <Figure src={v.src} alt={v.alt} video={v.video} ratio="1 / 1" sizes="(max-width: 768px) 100vw, 28vw" />
+                      </Reveal>
+                    </div>
+                  ))}
+                  <div className="md:col-span-4">
+                    <h3 className="font-display text-xl md:text-2xl">{project.name}</h3>
+                    <Note note={project.note} />
+                  </div>
+                </div>
+              </article>
+            );
+          }
+
+          // Temple Tiger: video on the left; on the right, every
+          // supporting shot stacked with the heading and note directly
+          // underneath — the right side reads as one self-contained
+          // banner (images + text together), rather than the text
+          // spanning full-width below both columns.
           if (project.layout === 'split-bottom') {
             return (
               <article key={i} className="col-span-4 md:col-span-12">
@@ -123,17 +204,16 @@ export function CharacterShowcase() {
                   </div>
                   <div className="md:col-span-5">
                     <SupportingMedia project={project} />
+                    <h3 className="mt-6 font-display text-xl md:text-2xl">{project.name}</h3>
+                    <Note note={project.note} />
                   </div>
                 </div>
-                <h3 className="mt-6 font-display text-xl md:text-2xl">{project.name}</h3>
-                <Note note={project.note} />
               </article>
             );
           }
 
           // Meshy studies: video, the gallery of stills, and the text
-          // all sit side by side in one row rather than the video and
-          // gallery stacking above the text.
+          // all sit side by side in one row.
           if (project.layout === 'split-right') {
             return (
               <article key={i} className="col-span-4 md:col-span-12">
@@ -162,6 +242,14 @@ export function CharacterShowcase() {
             );
           }
 
+          // Every project currently declares one of the layouts above,
+          // so this generic fallback is unreachable in practice — kept
+          // as a safety net for a future item added without a `layout`.
+          // The cast is needed because TS narrows `project` to `never`
+          // here once every union member is eliminated by the checks
+          // above.
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const generic = project as any;
           return (
             <article
               key={i}
@@ -175,18 +263,18 @@ export function CharacterShowcase() {
             >
               <Reveal>
                 <Figure
-                  src={project.asset.src}
-                  alt={project.asset.alt}
-                  placeholder={project.asset.placeholder}
-                  video={project.video}
+                  src={generic.asset.src}
+                  alt={generic.asset.alt}
+                  placeholder={generic.asset.placeholder}
+                  video={generic.video}
                   ratio="1 / 1"
-                  className={project.smallVideo ? 'max-w-[360px]' : undefined}
+                  className={generic.smallVideo ? 'max-w-[360px]' : undefined}
                   sizes={wide ? '(max-width: 768px) 100vw, 46vw' : '(max-width: 768px) 100vw, 32vw'}
                 />
               </Reveal>
-              <SupportingMedia project={project} />
-              <h3 className="mt-5 font-display text-xl md:text-2xl">{project.name}</h3>
-              <Note note={project.note} />
+              <SupportingMedia project={generic} />
+              <h3 className="mt-5 font-display text-xl md:text-2xl">{generic.name}</h3>
+              <Note note={generic.note} />
             </article>
           );
         })}

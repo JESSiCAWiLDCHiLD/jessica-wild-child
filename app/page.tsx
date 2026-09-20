@@ -5,10 +5,11 @@ import { Credentials } from '@/components/sections/Credentials';
 import { Disciplines } from '@/components/sections/Disciplines';
 import { StChristophersCaseStudy } from '@/components/sections/CaseStudy';
 import { CharacterShowcase } from '@/components/sections/CharacterShowcase';
+import { FoxCharacter } from '@/components/sections/FoxCharacter';
 import { ExpansionMap } from '@/components/sections/ExpansionMap';
 import { WildChildWorld } from '@/components/sections/WildChildWorld';
 import { GeoBitmineCaseStudy } from '@/components/sections/GeoBitmine';
-import { ConceptApplications } from '@/components/sections/ConceptApplications';
+import { HungryHamstersCaseStudy } from '@/components/sections/HungryHamsters';
 import { Process } from '@/components/sections/Process';
 import { About } from '@/components/sections/About';
 import { ContactCTA } from '@/components/sections/ContactCTA';
@@ -28,12 +29,13 @@ export default function HomePage() {
         <Hero />
         <Credentials />
         <Disciplines />
-        <StChristophersCaseStudy />
         <CharacterShowcase />
+        <FoxCharacter />
         <ExpansionMap />
         <WildChildWorld />
+        <StChristophersCaseStudy />
         <GeoBitmineCaseStudy />
-        <ConceptApplications />
+        <HungryHamstersCaseStudy />
         <Process />
         <About />
         <ContactCTA />

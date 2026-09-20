@@ -4,3 +4,8 @@ out
 .DS_Store
 *.tsbuildinfo
 next-env.d.ts
+
+# Original, pre-optimization 3D source files — kept locally (e.g. for
+# actual 3D printing) but far too large to ship in the repo/deploy.
+# The web-ready optimized version lives in public/images/.
+/3d-source-files

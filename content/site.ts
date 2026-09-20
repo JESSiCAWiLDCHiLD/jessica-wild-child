@@ -22,7 +22,7 @@ export const hero = {
   line1: 'I make characters',
   line2: 'that become worlds.',
   standfirst:
-    'Original characters and visual worlds for brands, schools and physical spaces. Drawn, modelled, animated, painted at scale — and built into places people walk through.',
+    'Original characters built into complete visual worlds — drawn, modelled in 3D, animated, and extended across campaigns, products, digital experiences and physical spaces.',
   primaryCta: { label: 'Explore the world', href: '#disciplines' },
   secondaryCta: { label: 'Start a project', href: '#contact' },
 };
@@ -81,11 +81,11 @@ export const process = {
   standfirst:
     'Commissions run as a collaboration, not a hand-off. You get the thinking as well as the artwork.',
   steps: [
-    { index: '01', title: 'Discover', body: 'Understand the place, the organisation, the audience, the story and the objectives. On site where possible.' },
-    { index: '02', title: 'Imagine', body: 'Research, sketching, symbolism, character exploration and world building. This is where the direction gets decided.' },
-    { index: '03', title: 'Create', body: 'Illustration, painting, 3D modelling and environmental design, worked up to production scale.' },
-    { index: '04', title: 'Bring to life', body: 'Animation, fabrication, murals, installation and interactive layers. The artwork meets the building.' },
-    { index: '05', title: 'Expand', body: 'Extend the characters and the world across new campaigns, environments and experiences as the organisation grows.' },
+    { index: '01', title: 'Discover', body: 'Understanding the place, the people and the objectives — on site wherever possible.' },
+    { index: '02', title: 'Imagine', body: 'Research and sketching toward a decided direction — symbolism, character, world.' },
+    { index: '03', title: 'Create', body: 'Illustration, 3D modelling and environmental design, built up to production scale.' },
+    { index: '04', title: 'Bring to life', body: 'Animation, fabrication and installation — where the artwork meets the building.' },
+    { index: '05', title: 'Expand', body: 'Extending the world into new campaigns and environments as it grows.' },
   ],
 };
 
@@ -122,9 +122,8 @@ export const contact = {
 };
 
 export const nav = [
-  { label: 'Work', href: '#st-christophers' },
   { label: 'Characters', href: '#dimension' },
   { label: 'Wild Child World', href: '#wild-child-world' },
-  { label: 'Concepts', href: '#concepts' },
+  { label: 'Work', href: '#st-christophers' },
   { label: 'About', href: '#about' },
 ];

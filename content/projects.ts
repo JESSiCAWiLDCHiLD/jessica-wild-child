@@ -3,6 +3,10 @@ export type Asset = {
   alt: string;
   /** Set when the asset is a stand-in Jessica needs to replace. */
   placeholder?: string;
+  /** Small label shown under the image, e.g. in a Detail/Process row. */
+  caption?: string;
+  /** Plays this video instead of the still — src is used as poster. */
+  video?: string;
 };
 
 export const stChristophers = {
@@ -24,12 +28,16 @@ export const stChristophers = {
       alt: 'Annotated site-assessment photographs comparing wall options in the corridor',
       caption: 'Site assessment',
     },
-    {
-      src: '/images/process/03-visual-brainstorm.jpg',
-      alt: 'Visual research and composition board for a Year 5 mural',
-      caption: 'Visual brainstorm',
-    },
   ],
+  // Sits to the right of the sketch still — a timelapse of one of the
+  // murals actually being painted, start to finish. The caption folds
+  // in what the (now-removed) visual-brainstorm still used to show,
+  // since the timelapse itself covers that ground.
+  timelapse: {
+    video: '/images/murals/year-four-timelapse.mp4',
+    alt: 'Timelapse of the Year 4 mural being painted, start to finish',
+    caption: 'Year 4 mural — from visual brainstorm to finished piece',
+  },
   murals: [
     {
       src: '/images/murals/st-christophers-year-3.jpg',
@@ -110,39 +118,65 @@ export const dimension = {
   chain: ['Drawing', 'Design', '3D model', 'Animation', 'World', 'Physical object'],
   projects: [
     {
-      name: 'From 2D to 3D',
-      note: 'I recreated the character in OpenBrush using Meta Quest, translating the original 2D personality into a three-dimensional form. The resulting character can be developed further through rigging, animation, virtual environments and physical production such as 3D printing.',
-      asset: { src: '/images/dimension/3d-character-openbrush.jpg', alt: '3D character modelled in OpenBrush, rotating' } as Asset,
-      video: '/images/characters/wild-child-character-08-3D-rotating-animation.MP4',
-      smallVideo: true, // native export is 480x480 — never display large
-      tall: true,
+      // Feral Baby and Strawbugs, side by side on their own row, each
+      // keeping their own text. Matched by height, not width — Feral
+      // Baby is shown at its full natural (portrait) proportions, and
+      // that height is what Strawbugs' square image stretches to
+      // match, rather than forcing both into the same box shape.
+      name: 'Feral Baby & Strawbugs',
+      layout: 'paired-originals' as const,
+      left: {
+        name: 'Feral Baby',
+        note: 'A wild child of the forest, drawn barefoot as a statement of freedom and instinct — crowned not as royalty but as her own kind of authority over her own wildness. The original hand-drawn character, before it was rebuilt in 3D in Meta Quest.',
+        asset: { src: '/images/process/feral-baby-original.gif', alt: 'Feral Baby — the original 2D character, animated' } as Asset,
+        ratio: '900 / 1236',
+      },
+      right: {
+        name: 'Strawbugs',
+        note: 'A frame-by-frame animated character built around strawberries-and-cream sweetness, skateboarding energy and a sense of childhood nostalgia. The aim was to capture curiosity, playfulness and a slightly dreamlike charm through colour, movement and expression.',
+        asset: { src: '/images/dimension/3d-environment-island.jpg', alt: '3D island environment, rotating' } as Asset,
+        video: '/images/characters/wild-child-strawbugs-island.mp4',
+      },
     },
     {
-      name: '"Strawbugs" — childhood character study',
-      note: 'A frame-by-frame animated character built around strawberries-and-cream sweetness, skateboarding energy and a sense of childhood nostalgia. The aim was to capture curiosity, playfulness and a slightly dreamlike charm through colour, movement and expression.',
-      asset: { src: '/images/dimension/3d-environment-island.jpg', alt: '3D island environment, rotating' } as Asset,
-      video: '/images/characters/wild-child-strawbugs-island.mov',
-    },
-    {
+      // A dedicated row: the two Meta Quest results, side by side at
+      // the same size as a standard card (matching Strawbugs above),
+      // with one shared caption sitting to their right rather than
+      // underneath — they're one process applied to two characters.
       name: 'From 2D to 3D',
-      note: 'I recreated the character in OpenBrush using Meta Quest, translating the original 2D personality into a three-dimensional form. The resulting character can be developed further through rigging, animation, virtual environments and physical production such as 3D printing.',
-      asset: { src: '/images/dimension/3d-environment-scene.jpg', alt: '3D scene study, rotating' } as Asset,
-      video: '/images/characters/wild-child-character-3d-video.mov',
+      layout: 'paired-videos' as const,
+      note: 'Feral Baby and Strawbugs rebuilt in OpenBrush using Meta Quest — approached as a 3D painting rather than a 3D construction, carrying the same brush instincts from canvas directly into space instead of modelling toward a technically "correct" mesh. The result can be developed further through rigging, animation, virtual environments and physical production such as 3D printing.',
+      pairedVideos: [
+        {
+          src: null,
+          alt: 'Feral Baby recreated in 3D, rotating',
+          video: '/images/characters/feral-baby-3d.mp4',
+        } as Asset,
+        {
+          // No poster — the previous one (a generic "3D island"
+          // photo) wasn't Strawbugs at all, and the Meta Quest clip
+          // has no clean frame to use in its place instead (OpenBrush
+          // UI is visible throughout).
+          src: null,
+          alt: 'Strawbugs recreated in 3D, rotating',
+          video: '/images/characters/strawbugs-meta-quest.mp4',
+        } as Asset,
+      ],
     },
     {
       name: 'Temple Tiger',
       note: 'Inspired by the ornament of Thai temple architecture, then sketched and rebuilt as a fully surfaced 3D model via the Meshy workflow.',
       asset: { src: null, alt: 'Tiger 3D character, rotating' } as Asset,
-      video: '/images/characters/tiger-video-3d.mov',
+      video: '/images/characters/tiger-video-3d.mp4',
       // The supporting development shots (Detail/Process/Reference)
       // run in a column next to the video; the heading and note sit
       // below everything as one full-width banner.
       layout: 'split-bottom' as const,
       detail: [
-        { src: '/images/characters/tiger-image-1.png', alt: 'Close-up detail of the tiger’s surfacing and ornament' },
-        { src: '/images/characters/tiger-image-3.png', alt: 'Close-up detail of the tiger’s roaring expression and mane' },
-        { src: '/images/characters/tiger-image-4.png', alt: 'Close-up detail of the tiger’s shoulder ornament' },
-        { src: '/images/characters/tiger-image-5.png', alt: 'Close-up detail of the tiger’s head and shoulder surfacing' },
+        { src: '/images/characters/tiger-image-1.png', alt: 'Close-up detail of the tiger’s surfacing and ornament' } as Asset,
+        { src: '/images/characters/tiger-image-3.png', alt: 'Close-up detail of the tiger’s roaring expression and mane' } as Asset,
+        { src: '/images/characters/tiger-image-4.png', alt: 'Close-up detail of the tiger’s shoulder ornament' } as Asset,
+        { src: '/images/characters/tiger-image-5.png', alt: 'Close-up detail of the tiger’s head and shoulder surfacing' } as Asset,
       ],
       // The fullest process story on the site — gets the wide slot
       // regardless of where it lands in the grid.
@@ -176,20 +210,12 @@ export const dimension = {
           {
             src: '/images/characters/tiger-temple-inspiration-photo-1.jpg',
             alt: 'Filmed walkthrough of the temple ornament',
-            video: '/images/characters/tiger-temple-inspiration.MOV',
+            video: '/images/characters/tiger-temple-inspiration.mp4',
             caption: 'On site',
           },
         ],
       },
       tall: true,
-    },
-    {
-      name: 'Physical form',
-      note: 'The last step in the chain: a character that leaves the screen entirely.',
-      asset: {
-        src: '/images/dimension/physical-form-painted-tote.png',
-        alt: 'A Wild Child character painted onto a physical tote bag',
-      } as Asset,
     },
     {
       name: 'Meshy character studies',
@@ -209,6 +235,11 @@ export const dimension = {
         { src: '/images/characters/wild-child-3d-experiment-4.JPG', alt: 'Meshy-generated 3D character study' } as Asset,
       ],
     },
+    // No "physical form" row for this section's own cast (Feral Baby,
+    // Strawbugs, Temple Tiger) — none of them exist as a physical
+    // object yet. That proof point belongs to the yeti's pipeline in
+    // "One character, endless possibilities" instead, rather than
+    // reaching for an unrelated product here just to cover the step.
   ],
 };
 
@@ -231,7 +262,7 @@ export const wildChildWorld = {
     {
       src: null, // wild-child-character-01.png no longer exists — video plays without a poster frame
       alt: 'Wild Child character, animated',
-      video: '/images/characters/wild-child-character-04-animated.mov',
+      video: '/images/characters/wild-child-character-04-animated.mp4',
     },
     {
       src: '/images/characters/wild-child-character-07-wildchildworld.JPEG',
@@ -241,6 +272,10 @@ export const wildChildWorld = {
   // Replaces the old mixed-ratio gallery entirely: one title image up
   // top, then three plain rows, smallest to most experimental.
   media: {
+    // The yeti's 3D model and physical print now live in the "One
+    // character, endless possibilities" section as that character's
+    // proof case — kept out of here so this section reads purely as
+    // the roster (breadth), not a repeat of the process story.
     top: {
       src: '/images/characters/wild-child-character-07-wildchildworld.JPEG',
       alt: 'Wild Child World title card — a monster with the wordmark inside its open mouth',
@@ -252,7 +287,7 @@ export const wildChildWorld = {
           {
             src: null,
             alt: 'Wild Child character, animated',
-            video: '/images/characters/wild-child-character-04-animated.mov',
+            video: '/images/characters/wild-child-character-04-animated.mp4',
           },
           { src: '/images/characters/wild-child-character-05.JPG', alt: 'Wild Child character study' },
           { src: '/images/characters/wild-child-character-06.JPG', alt: 'Wild Child character study' },
@@ -267,15 +302,15 @@ export const wildChildWorld = {
         fit: 'contain' as const,
         items: [
           { src: '/images/characters/Indigo_Warrior.GIF', alt: 'Indigo Warrior, animated' },
-          { src: '/images/characters/feral-baby.jpg', alt: 'Feral Baby character portrait' },
+          { src: '/images/process/feral-baby-original.gif', alt: 'Feral Baby, animated' },
           { src: '/images/characters/One-ness.jpg', alt: 'One-ness — dreamscape portrait' },
           { src: null, alt: 'Dream 59, animated painting', video: '/images/characters/dream-59.mp4' },
         ],
       },
       {
         items: [
-          { src: null, alt: 'Flower character, animated', video: '/images/characters/flower-animated.mov' },
-          { src: null, alt: 'Deranged Rainbow character, animated', video: '/images/characters/deranged-rainbow.mov' },
+          { src: null, alt: 'Flower character, animated', video: '/images/characters/flower-animated.mp4' },
+          { src: null, alt: 'Deranged Rainbow character, animated', video: '/images/characters/deranged-rainbow.mp4' },
         ],
       },
     ],

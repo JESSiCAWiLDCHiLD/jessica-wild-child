@@ -96,7 +96,7 @@ export function Hero() {
           ) : null}
         </div>
         <div
-          className="absolute left-[-12%] top-[4%] w-[40vw] max-w-[360px] opacity-70 md:left-[3%] md:top-[8%] md:w-[18vw]"
+          className="absolute left-[-12%] top-[4%] w-[48vw] max-w-[420px] opacity-70 md:left-[3%] md:top-[8%] md:w-[24vw]"
           style={drift(-16)}
         >
           {wildChildWorld.cutouts[1].src ? (

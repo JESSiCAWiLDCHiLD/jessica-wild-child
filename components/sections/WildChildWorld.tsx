@@ -15,12 +15,14 @@ export function WildChildWorld() {
         <p className="mt-8 max-w-reading text-lead opacity-75">{w.standfirst}</p>
       </div>
 
-      {/* Title card, then three plain rows — smallest to most
-          experimental. Kept modest in size so several are visible at
-          once rather than one giant image per screen. */}
-      <Reveal className="mx-auto mt-12 w-full max-w-xs">
-        <Figure src={w.media.top.src} alt={w.media.top.alt} ratio="1 / 1" sizes="320px" />
-      </Reveal>
+      {/* Title card — the yeti's own 3D model and physical print now
+          live in "One character, endless possibilities" instead, so
+          this section opens straight into the roster. */}
+      <div className="mx-auto mt-12 w-full max-w-md">
+        <Reveal>
+          <Figure src={w.media.top.src} alt={w.media.top.alt} ratio="1 / 1" sizes="430px" />
+        </Reveal>
+      </div>
 
       <div className="mt-8 space-y-4">
         {w.media.rows.map((row, i) => (

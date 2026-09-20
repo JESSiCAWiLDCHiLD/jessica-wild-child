@@ -32,7 +32,10 @@ const config: Config = {
       // at the top end where it mattered most.
       fontSize: {
         mega: ['clamp(2.6rem, 10.5vw, 8.5rem)', { lineHeight: '0.84', letterSpacing: '-0.035em' }],
-        huge: ['clamp(2rem, 6.2vw, 4.8rem)', { lineHeight: '0.88', letterSpacing: '-0.03em' }],
+        // lineHeight nudged up from 0.88 — tight enough to clip
+        // descenders (the 'g' in "From drawing to dimension") when a
+        // heading in this size happens to have one.
+        huge: ['clamp(2rem, 6.2vw, 4.8rem)', { lineHeight: '0.96', letterSpacing: '-0.03em' }],
         big: ['clamp(1.5rem, 3.6vw, 2.6rem)', { lineHeight: '0.98', letterSpacing: '-0.02em' }],
         lead: ['clamp(0.95rem, 1.4vw, 1.15rem)', { lineHeight: '1.42', letterSpacing: '-0.01em' }],
         meta: ['0.68rem', { lineHeight: '1.3', letterSpacing: '0.14em' }],

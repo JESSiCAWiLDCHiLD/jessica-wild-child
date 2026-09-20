@@ -21,6 +21,11 @@ type Props = {
    * of the still image — `src` is still used as the video's poster
    * frame while it loads. */
   video?: string | null;
+  /** Fill the parent's height instead of sizing by `ratio` — use this
+   * alongside a CSS Grid row with `items-stretch` to match another
+   * element's height exactly (e.g. a taller image grid next to it)
+   * without hardcoding a number. */
+  fillHeight?: boolean;
 };
 
 function videoMimeType(path: string): string {
@@ -48,6 +53,7 @@ export function Figure({
   caption,
   fit = 'cover',
   video,
+  fillHeight = false,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -77,8 +83,11 @@ export function Figure({
   }, [video]);
 
   return (
-    <figure className={clsx('relative', className)}>
-      <div className="relative w-full overflow-hidden" style={{ aspectRatio: ratio }}>
+    <figure className={clsx('relative', fillHeight && 'flex h-full flex-col', className)}>
+      <div
+        className={clsx('relative w-full flex-1 overflow-hidden', fillHeight && 'h-full')}
+        style={fillHeight ? undefined : { aspectRatio: ratio }}
+      >
         {video ? (
           <video
             ref={videoRef}
