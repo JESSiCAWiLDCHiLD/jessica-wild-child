@@ -1,37 +1,20 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { ModelViewer } from '@/components/ui/ModelViewer';
 import { hero, site } from '@/content/site';
-import { wildChildWorld } from '@/content/projects';
 
 /**
- * The one orchestrated page-load moment on the site. Two character
- * cut-outs drift with the cursor; everything below is quiet by
- * comparison. Parallax is pointer-only and disabled for touch and for
+ * The one orchestrated page-load moment on the site. The 3D mascot
+ * drifts with the cursor; everything below is quiet by comparison.
+ * Parallax is pointer-only and disabled for touch and for
  * reduced-motion users.
  */
 export function Hero() {
   const ref = useRef<HTMLElement | null>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const [loaded, setLoaded] = useState(false);
   const [interactive, setInteractive] = useState(false);
-
-  // Belt-and-suspenders for the cut-out video: the autoPlay attribute
-  // alone is occasionally ignored, so nudge playback explicitly too.
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    const tryPlay = () => el.play().catch(() => {});
-    tryPlay();
-    el.addEventListener('canplay', tryPlay);
-    document.addEventListener('visibilitychange', tryPlay);
-    return () => {
-      el.removeEventListener('canplay', tryPlay);
-      document.removeEventListener('visibilitychange', tryPlay);
-    };
-  }, []);
 
   useEffect(() => {
     setLoaded(true);
@@ -62,53 +45,18 @@ export function Hero() {
       ref={ref}
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden px-[var(--gutter)] pb-12 pt-32 lg:pl-[calc(var(--gutter)+var(--rail))]"
     >
-      {/* Character cut-outs — both kept in the upper portion of the
-          section, since the text below is bottom-anchored (justify-end)
-          and used to collide with a cut-out sitting down there too. */}
+      {/* The interactive 3D mascot — replaces the two drifting
+          cut-outs. Kept in the upper portion of the section, since the
+          text below is bottom-anchored (justify-end). The wrapper
+          layer is pointer-events-none (decorative, click-through) but
+          the model itself re-enables pointer events so drag-to-rotate
+          still works. */}
       <div className="pointer-events-none absolute inset-0 -z-0" aria-hidden>
         <div
-          className="absolute right-[-8%] top-[4%] w-[52vw] max-w-[560px] opacity-95 md:right-[2%] md:top-[6%] md:w-[34vw]"
-          style={drift(26)}
+          className="pointer-events-auto absolute right-[-8%] top-[2%] aspect-square w-[80vw] max-w-[800px] md:right-[-2%] md:top-[3%] md:w-[50vw]"
+          style={drift(22)}
         >
-          {wildChildWorld.cutouts[0].video ? (
-            <video
-              ref={videoRef}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster={wildChildWorld.cutouts[0].src ?? undefined}
-              aria-label={wildChildWorld.cutouts[0].alt}
-              className="h-auto w-full"
-            >
-              <source src={wildChildWorld.cutouts[0].video} type="video/quicktime" />
-            </video>
-          ) : wildChildWorld.cutouts[0].src ? (
-            <Image
-              src={wildChildWorld.cutouts[0].src}
-              alt=""
-              width={720}
-              height={720}
-              priority
-              className="h-auto w-full"
-            />
-          ) : null}
-        </div>
-        <div
-          className="absolute left-[-12%] top-[4%] w-[48vw] max-w-[420px] opacity-70 md:left-[3%] md:top-[8%] md:w-[24vw]"
-          style={drift(-16)}
-        >
-          {wildChildWorld.cutouts[1].src ? (
-            <Image
-              src={wildChildWorld.cutouts[1].src}
-              alt=""
-              width={720}
-              height={720}
-              priority
-              className="h-auto w-full"
-            />
-          ) : null}
+          <ModelViewer src={hero.model.src} alt={hero.model.alt} className="h-full w-full" />
         </div>
       </div>
 

@@ -19,12 +19,18 @@ export const site = {
 };
 
 export const hero = {
-  line1: 'I make characters',
-  line2: 'that become worlds.',
+  line1: 'I build characters',
+  line2: '& the worlds around them',
   standfirst:
     'Original characters built into complete visual worlds — drawn, modelled in 3D, animated, and extended across campaigns, products, digital experiences and physical spaces.',
   primaryCta: { label: 'Explore the world', href: '#disciplines' },
   secondaryCta: { label: 'Start a project', href: '#contact' },
+  // The interactive 3D mascot — replaces the two drifting cut-outs
+  // that used to sit in the banner.
+  model: {
+    src: '/images/process/wildchild-character-3d.glb',
+    alt: '3D model of the Wild Child yeti — drag to rotate',
+  },
 };
 
 export const credentials = {
